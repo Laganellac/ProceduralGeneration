@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://chunk/Chunk.gd" type="Script" id=1]
+[ext_resource path="res://block/Block.tscn" type="PackedScene" id=2]
+[ext_resource path="res://player/art/playerGrey_walk2.png" type="Texture" id=3]
+
+[node name="Chunk" type="Node2D"]
+script = ExtResource( 1 )
+Block = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 3 )
