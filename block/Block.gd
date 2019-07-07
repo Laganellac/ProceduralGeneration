@@ -3,21 +3,29 @@ extends Node2D
 class_name Block, "res://block/art/Grass.PNG"
 
 # Declare member variables here. Examples:
-const BLOCK_TYPES = ["coal", "dirt", "glass", "gold", "grass", "stone"]
+enum BlockTypes {
+	Coal = 0,
+	Dirt = 1,
+	Glass = 2,
+	Gold = 3,
+	Grass = 4,
+	Stone = 5,
+	Tnt,
+}
 
 const TEXTURE_LOCATIONS = {
-	BLOCK_TYPES[0]: "res://block/art/Coat.PNG",
-	BLOCK_TYPES[1]: "res://block/art/Dirt.PNG",
-	BLOCK_TYPES[2]: "res://block/art/Glass.PNG",
-	BLOCK_TYPES[3]: "res://block/art/Gold.PNG",
-	BLOCK_TYPES[4]: "res://block/art/Grass.PNG",
-	BLOCK_TYPES[5]: "res://block/art/Stone.PNG",
-	"tnt": "res://block/art/Tnt.PNG"
+	BlockTypes.Coal: "res://block/art/Coat.PNG",
+	BlockTypes.Dirt: "res://block/art/Dirt.PNG",
+	BlockTypes.Glass: "res://block/art/Glass.PNG",
+	BlockTypes.Gold: "res://block/art/Gold.PNG",
+	BlockTypes.Grass: "res://block/art/Grass.PNG",
+	BlockTypes.Stone: "res://block/art/Stone.PNG",
+	BlockTypes.Tnt: "res://block/art/Tnt.PNG"
 }
-var type: String setget set_type
+var type: = -1 setget set_type
 
 func _init():
-	type = BLOCK_TYPES[1]
+	type = BlockTypes.Tnt
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,10 +35,10 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func set_type(t: String):
-	if BLOCK_TYPES.find(t) > -1:
+func set_type(t: int):
+	if t <= BlockTypes.size():
 		type = t
 	else:
-		print("Invalid block type given - " + t)
-		type = "tnt"
+		print("WARNING: Invalid block type given - " + str(t))
+		type = BlockTypes.Tnt
 	$Sprite.texture = load(TEXTURE_LOCATIONS[type])
