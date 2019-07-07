@@ -24,6 +24,13 @@ config/name="ProceduralGeneration"
 run/main_scene="res://world/World.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/vsync/use_vsync=false
+
 [rendering]
 
+quality/intended_usage/framebuffer_allocation=0
+quality/intended_usage/framebuffer_allocation.mobile=0
+threads/thread_model=2
 environment/default_environment="res://default_env.tres"
